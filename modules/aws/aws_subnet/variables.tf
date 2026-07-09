@@ -18,3 +18,8 @@ variable "az_sn" {
   type = number
   description = "The availability zone serial number for the subnet."
 }
+variable "is_public" {
+  type = bool
+  default = false
+  description = "A flag to control whether to create a public or private subnet. Default to false."
+}
