@@ -2,7 +2,7 @@
 data "aws_region" "current" {}
 
 resource "aws_vpc_dhcp_options" "spoke" {
-  count                = var.custom_dns ? 0:1
+  count                = var.custom_dns ? 1:0
   domain_name          = "${data.aws_region.current.name}.compute.internal"
   domain_name_servers  = var.custom_dns ? [module.dns-server.private_ip] : ["AmazonProvidedDNS"]
 
@@ -11,7 +11,7 @@ resource "aws_vpc_dhcp_options" "spoke" {
   }, var.tags)
 }
 resource "aws_vpc_dhcp_options_association" "spoke" {
-  count           = var.custom_dns ? 0:1
+  count           = var.custom_dns ? 1:0
   vpc_id          = var.spoke_vpc_id
   dhcp_options_id = aws_vpc_dhcp_options.spoke[0].id
 }

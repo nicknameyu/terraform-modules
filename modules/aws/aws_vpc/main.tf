@@ -43,13 +43,14 @@ output "firewall_subnet" {
 }
 ##### Public Subnets #####
 module "public_subnet" {
-  for_each    = var.public_subnets
-  source      = "github.com/nicknameyu/terraform-modules/modules/aws/aws_subnet"
-  subnet_name = each.key
-  vpc_id      = aws_vpc.vpc.id
-  cidr_block  = each.value.cidr
-  az_sn       = each.value.az_sn
-  tags        = var.tags
+  for_each      = var.public_subnets
+  source        = "github.com/nicknameyu/terraform-modules/modules/aws/aws_subnet"
+  subnet_name   = each.key
+  vpc_id        = aws_vpc.vpc.id
+  cidr_block    = each.value.cidr
+  az_sn         = each.value.az_sn
+  is_public     = true
+  tags          = var.tags
 }
 output "public_subnets" {
   value = {

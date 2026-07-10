@@ -23,16 +23,28 @@ locals {
                                   ip_protocol      = "TCP"
                                   cidr_block       = "0.0.0.0/0"
                                 }
-                                hub = {
+                                hub_udp = {
                                   from_port        = 53
                                   to_port          = 53
                                   ip_protocol      = "UDP"
                                   cidr_block       = data.aws_vpc.hub_vpc.cidr_block
                                 }
-                                spoke = {
+                                spoke_udp = {
                                   from_port        = 53
                                   to_port          = 53
                                   ip_protocol      = "UDP"
+                                  cidr_block       = data.aws_vpc.spoke_vpc.cidr_block
+                                }
+                                hub_tcp = {
+                                  from_port        = 53
+                                  to_port          = 53
+                                  ip_protocol      = "TCP"
+                                  cidr_block       = data.aws_vpc.hub_vpc.cidr_block
+                                }
+                                spoke_tcp = {
+                                  from_port        = 53
+                                  to_port          = 53
+                                  ip_protocol      = "TCP"
                                   cidr_block       = data.aws_vpc.spoke_vpc.cidr_block
                                 }
                               }
