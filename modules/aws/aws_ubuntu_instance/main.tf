@@ -127,9 +127,8 @@ resource "aws_instance" "instance" {
 
   user_data     = local.user_data == null ? null : local.user_data
 
-  network_interface {
+  primary_network_interface {
     network_interface_id = aws_network_interface.instance.id
-    device_index         = 0
   }
 
   credit_specification {

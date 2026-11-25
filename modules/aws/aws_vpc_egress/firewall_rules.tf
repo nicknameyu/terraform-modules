@@ -1,6 +1,6 @@
 data "aws_region" "current" {}
 locals {
-  region = data.aws_region.current.name
+  region = data.aws_region.current.region
   # https://docs.cloudera.com/cdp-public-cloud/cloud/requirements-aws/topics/mc-outbound_access_requirements.html
   fw_cdp_ep = [
     # Cloudera CCMv2
