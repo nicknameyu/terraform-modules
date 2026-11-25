@@ -3,7 +3,7 @@ data "aws_region" "current" {}
 
 resource "aws_vpc_dhcp_options" "spoke" {
   count                = var.custom_dns ? 1:0
-  domain_name          = "${data.aws_region.current.name}.compute.internal"
+  domain_name          = "${data.aws_region.current.region}.compute.internal"
   domain_name_servers  = var.custom_dns ? [module.dns-server.private_ip] : ["AmazonProvidedDNS"]
 
   tags = merge({

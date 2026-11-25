@@ -72,7 +72,7 @@ module "dns-server" {
                               file("${path.module}/scripts/install_kubectl.sh"),
                               templatefile("${path.module}/scripts/install_bind9.sh", {
                                 DNS_RESOLVER_IP = tolist(aws_route53_resolver_endpoint.dns_resolver.ip_address)[0].ip
-                                REGION          = data.aws_region.current.name
+                                REGION          = data.aws_region.current.region
                               }) 
                             ]
 
